@@ -138,10 +138,21 @@ var completeOrder = function () {
     });
 };
 
+var getCart = function (cb) {
+    request(getCartRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            console.log(response);
+            cb();
+        }
+    });
+};
+
 var addPayment = function () {
     request(addPaymentRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             completeOrder();
         }
     });
@@ -151,6 +162,7 @@ var canCheckout = function () {
     request(canCheckoutRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             addPayment();
         }
     });
@@ -160,6 +172,7 @@ var getStoreStatus = function () {
     request(getStoreStatusRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             canCheckout();
         }
     });
@@ -169,6 +182,7 @@ var checkSubmittedData = function () {
     request(checkSubmittedDataRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getStoreStatus();
         }
     });
@@ -178,6 +192,7 @@ var updateTip = function () {
     request(updateTipRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             checkSubmittedData();
         }
     });
@@ -187,6 +202,7 @@ var deliveryInstr = function () {
     request(deliveryInstrRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             updateTip();
         }
     });
@@ -196,6 +212,7 @@ var getHours = function () {
     request(getHoursRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getCart(deliveryInstr);
         }
     });
@@ -205,6 +222,7 @@ var checkPaymentMethods = function () {
     request(checkPaymentMethodsRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getHours();
         }
     });
@@ -214,6 +232,7 @@ var getSchoolcash = function () {
     request(getSchoolcashRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             checkPaymentMethods();
         }
     });
@@ -223,6 +242,7 @@ var getTip = function () {
     request(getTipRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getSchoolcash();
         }
     });
@@ -232,6 +252,7 @@ var getPaymentVars = function () {
     request(getPaymentVarsRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getCart(getTip);
         }
     });
@@ -241,6 +262,7 @@ var canCheckout = function () {
     request(canCheckoutRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getPaymentVars();
         }
     });
@@ -250,16 +272,8 @@ var addProduct = function () {
     request(addProductRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getCart(canCheckout);
-        }
-    });
-};
-
-var getCart = function (cb) {
-    request(getCartRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            cb();
         }
     });
 };
@@ -268,6 +282,7 @@ var setDateTime = function () {
     request(dateTimeRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
+            console.log(response);
             getCart(addProduct);
         }
     });
@@ -277,6 +292,7 @@ var initiateOrder = function () {
     request(storeRequest, function (error, response, body) {
         if (error) throw new Error(error);
         else { 
+            console.log(response);
             setDateTime();
         }
     });
