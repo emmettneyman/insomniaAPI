@@ -12,7 +12,7 @@ var timeData = { time: "ASAP", date: currentDate };
 var productData = { deliveryMethod: "both",
                     quantity: 4,
                     productID: 4,
-                    platform: "website"}
+                    platform: "website"};
 
 var submittedData = "shipping_name=Emmett+Neyman&shipping_phone=2159003788&address=101++South+39th+Street%2C+Philadelphia%2C+PA+19104&address_2=D301&instructions=Call+when+here.&comment=&customer_name=Emmett+Neyman&payment_phone=2159003788&payment_email=emmettneyman%40gmail.com&payment_guest=Nope&location_type=off-campus&credit_card=&cash=&schoolcash=&giftcard=&tip=";
 
@@ -132,7 +132,7 @@ var completeOrder = function () {
     request(completeOrderRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
-            console.log("Yay, your cookies were ordered")
+            console.log("Yay, your cookies were ordered");
         }
     });
 };
@@ -288,4 +288,4 @@ var initiateOrder = function () {
 // getHours -> getCart -> deliveryInstr -> updateTip ->
 // checkSubmittedData -> getStoreStatus -> canCheckout ->
 // addPayment -> completeOrder -> COOKIES
-initiateOrder()
+initiateOrder();
