@@ -133,6 +133,7 @@ var completeOrder = function () {
         if (error) throw new Error(error);
         else {
             console.log("Yay, your cookies were ordered");
+            console.log(response);
         }
     });
 };
