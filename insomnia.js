@@ -128,137 +128,11 @@ var completeOrderRequest = {
     json: true 
 };
 
-var initiateOrder = function () {
-    request(storeRequest, function (error, response, body) {
-        if (error) throw new Error(error);
-        else { 
-            setDateTime();
-        }
-    });
-};
-
-var setDateTime = function () {
-    request(dateTimeRequest, function(error, response, body) {
+var completeOrder = function () {
+    request(completeOrderRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
-            getCart(addProduct);
-        }
-    });
-};
-
-var getCart = function (cb) {
-    request(getCartRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            cb();
-        }
-    });
-};
-
-var addProduct = function () {
-    request(addProductRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getCart(canCheckout);
-        }
-    });
-};
-
-var canCheckout = function () {
-    request(canCheckoutRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getPaymentVars();
-        }
-    });
-};
-
-var getPaymentVars = function () {
-    request(getPaymentVarsRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getCart(getTip);
-        }
-    });
-};
-
-var getTip = function () {
-    request(getTipRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getSchoolcash();
-        }
-    });
-};
-
-var getSchoolcash = function () {
-    request(getSchoolcashRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            checkPaymentMethods();
-        }
-    });
-};
-
-var checkPaymentMethods = function () {
-    request(checkPaymentMethodsRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getHours();
-        }
-    });
-};
-
-var getHours = function () {
-    request(getHoursRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getCart(deliveryInstr);
-        }
-    });
-};
-
-var deliveryInstr = function () {
-    request(deliveryInstrRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            updateTip();
-        }
-    });
-};
-
-var updateTip = function () {
-    request(updateTipRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            checkSubmittedData();
-        }
-    });
-};
-
-var checkSubmittedData = function () {
-    request(checkSubmittedDataRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            getStoreStatus();
-        }
-    });
-};
-
-var getStoreStatus = function () {
-    request(getStoreStatusRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            canCheckout();
-        }
-    });
-};
-
-var canCheckout = function () {
-    request(canCheckoutRequest, function(error, response, body) {
-        if (error) throw new Error(error);
-        else {
-            addPayment();
+            console.log("Yay, your cookies were ordered")
         }
     });
 };
@@ -272,11 +146,137 @@ var addPayment = function () {
     });
 };
 
-var completeOrder = function () {
-    request(completeOrderRequest, function(error, response, body) {
+var canCheckout = function () {
+    request(canCheckoutRequest, function(error, response, body) {
         if (error) throw new Error(error);
         else {
-            console.log("Yay, your cookies were ordered")
+            addPayment();
+        }
+    });
+};
+
+var getStoreStatus = function () {
+    request(getStoreStatusRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            canCheckout();
+        }
+    });
+};
+
+var checkSubmittedData = function () {
+    request(checkSubmittedDataRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getStoreStatus();
+        }
+    });
+};
+
+var updateTip = function () {
+    request(updateTipRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            checkSubmittedData();
+        }
+    });
+};
+
+var deliveryInstr = function () {
+    request(deliveryInstrRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            updateTip();
+        }
+    });
+};
+
+var getHours = function () {
+    request(getHoursRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getCart(deliveryInstr);
+        }
+    });
+};
+
+var checkPaymentMethods = function () {
+    request(checkPaymentMethodsRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getHours();
+        }
+    });
+};
+
+var getSchoolcash = function () {
+    request(getSchoolcashRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            checkPaymentMethods();
+        }
+    });
+};
+
+var getTip = function () {
+    request(getTipRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getSchoolcash();
+        }
+    });
+};
+
+var getPaymentVars = function () {
+    request(getPaymentVarsRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getCart(getTip);
+        }
+    });
+};
+
+var canCheckout = function () {
+    request(canCheckoutRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getPaymentVars();
+        }
+    });
+};
+
+var addProduct = function () {
+    request(addProductRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getCart(canCheckout);
+        }
+    });
+};
+
+var getCart = function (cb) {
+    request(getCartRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            cb();
+        }
+    });
+};
+
+var setDateTime = function () {
+    request(dateTimeRequest, function(error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            getCart(addProduct);
+        }
+    });
+};
+
+var initiateOrder = function () {
+    request(storeRequest, function (error, response, body) {
+        if (error) throw new Error(error);
+        else { 
+            setDateTime();
         }
     });
 };
